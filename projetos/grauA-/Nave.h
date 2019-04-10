@@ -11,6 +11,8 @@ public:
 	void atualizar();
 	void desenhar(float x, float y);
 
+	void atirar();
+
 	virtual Sprite getSprite();
 
 protected:
