@@ -5,5 +5,10 @@ class NaveVerde : public Nave
 public:
 	NaveVerde();
 	~NaveVerde();
+
+	Sprite getSprite() override { return sprite; }
+
+private:
+	void inicializar();
 };
 

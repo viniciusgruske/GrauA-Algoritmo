@@ -15,6 +15,8 @@ void Jogo::inicializar()
 	//	O resto da inicialização vem aqui!
 	//	...
 	carregarAssets();
+	jogador = new Jogador();
+	jogador->inicializar();
 }
 
 void Jogo::finalizar()
@@ -34,11 +36,9 @@ void Jogo::executar()
 		//	Seu código vem aqui!
 		//	...
 
-		Nave jogador;
-
-		jogador.atualizar();
-		jogador.desenhar();
-
+		jogador->atualizar();
+		jogador->desenhar();
+		
 		uniTerminarFrame();
 	}
 }

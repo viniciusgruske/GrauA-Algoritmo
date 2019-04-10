@@ -1,6 +1,7 @@
 #pragma once
 #include "libUnicornio.h"
-#include "Nave.h"
+#include "Jogador.h"
+
 
 class Jogo
 {
@@ -13,5 +14,7 @@ public:
 	void executar();
 private:
 	void carregarAssets();
+
+	Jogador * jogador;
 };
 

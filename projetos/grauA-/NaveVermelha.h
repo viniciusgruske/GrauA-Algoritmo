@@ -6,11 +6,9 @@ public:
 	NaveVermelha();
 	~NaveVermelha();
 
-	void inicializar();
-
 	Sprite getSprite() override { return sprite; }
 
 private:
-	Sprite sprite;
+	void inicializar();
 };
 

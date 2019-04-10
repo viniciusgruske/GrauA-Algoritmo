@@ -4,6 +4,7 @@
 
 NaveVermelha::NaveVermelha()
 {
+	inicializar();
 }
 
 
@@ -13,5 +14,5 @@ NaveVermelha::~NaveVermelha()
 
 void NaveVermelha::inicializar()
 {
-	sprite.setSpriteSheet("naveVermelha.png");
+	sprite.setSpriteSheet("naveVermelha");
 }
