@@ -15,6 +15,6 @@ public:
 private:
 	void carregarAssets();
 
-	Jogador * jogador;
+	Jogador *jogador;
 };
 

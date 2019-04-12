@@ -18,7 +18,8 @@ void Jogador::inicializar()
 
 	x = 300;
 	y = 200;
-	naveAtual = 0;
+	cdTiro = 0;
+	naveAtual = Vermelha;
 	velocidade = 3;
 }
 
@@ -42,23 +43,48 @@ void Jogador::atualizar()
 	}
 	if (gTeclado.pressionou[TECLA_Q])
 	{
-		naveAtual = 0;
+		naveAtual = Vermelha;
 	}
 	if (gTeclado.pressionou[TECLA_W])
 	{
-		naveAtual = 1;
+		naveAtual = Verde;
 	}
 	if (gTeclado.pressionou[TECLA_E])
 	{
-		naveAtual = 2;
+		naveAtual = Azul;
 	}
-	if (gTeclado.pressionou[TECLA_ESPACO])
+	if (gTeclado.segurando[TECLA_ESPACO])
 	{
-		naves[naveAtual]->atirar();
+		if ((cdTiro % 20) == 0)
+		{
+			naves[naveAtual]->atirar(x, y, naveAtual);
+		}
+	}
+	cdTiro++;
+	for (int j = 0; j < 3; j++)
+	{
+		for (int i = 0; i < 20; i++)
+		{
+			if (naves[j]->getTiro(i) != nullptr)
+			{
+				naves[j]->getTiro(i)->atualizar();
+			}
+		}
 	}
 }
 
 void Jogador::desenhar()
 {
 	naves[naveAtual]->desenhar(x, y);
+
+	for (int j = 0; j < 3; j++)
+	{
+		for (int i = 0; i < 20; i++)
+		{
+			if (naves[j]->getTiro(i) != nullptr)
+			{
+				naves[j]->getTiro(i)->desenhar();
+			}
+		}
+	}
 }

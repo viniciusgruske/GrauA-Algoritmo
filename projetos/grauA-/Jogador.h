@@ -23,7 +23,9 @@ public:
 
 private:
 	Nave *naves[3]{};
-	int naveAtual;
+	Cores naveAtual;
+
+	int cdTiro;
 
 	float x, y, velocidade;
 };

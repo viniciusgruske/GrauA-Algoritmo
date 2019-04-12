@@ -106,6 +106,7 @@
     <ClCompile Include="NaveAzul.cpp" />
     <ClCompile Include="NaveVerde.cpp" />
     <ClCompile Include="NaveVermelha.cpp" />
+    <ClCompile Include="Tiro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Jogador.h" />
@@ -114,6 +115,7 @@
     <ClInclude Include="NaveAzul.h" />
     <ClInclude Include="NaveVerde.h" />
     <ClInclude Include="NaveVermelha.h" />
+    <ClInclude Include="Tiro.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

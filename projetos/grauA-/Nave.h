@@ -1,5 +1,6 @@
 #pragma once
 #include "libUnicornio.h"
+#include "Tiro.h"
 
 class Nave
 {
@@ -8,14 +9,16 @@ public:
 	~Nave();
 
 	void inicializar();
-	void atualizar();
 	void desenhar(float x, float y);
 
-	void atirar();
-
 	virtual Sprite getSprite();
+	void atirar(float x, float y, Cores c);
+
+	Tiro* getTiro(int i) { return this->tiro[i]; }
 
 protected:
+	int indexTiro;
 	Sprite sprite;
+	Tiro *tiro[20];
 };
 
