@@ -1,14 +1,14 @@
 #pragma once
 #include "libUnicornio.h"
+#include "Tiro.h"
 
-enum Cores { Vermelha, Verde, Azul };
-
-class Tiro
+class Meteoro
 {
 public:
-	Tiro(float x, float y, Cores c);
-	~Tiro();
+	Meteoro();
+	~Meteoro();
 
+	void inicializar();
 	void atualizar();
 	void desenhar();
 
@@ -19,7 +19,8 @@ public:
 
 private:
 	float x, y, velocidade;
-	Cores cor;
 	Sprite sprite;
+	Cores cor;
+	int seed;
 };
 

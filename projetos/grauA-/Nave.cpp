@@ -13,7 +13,7 @@ Nave::~Nave()
 void Nave::inicializar()
 {
 	indexTiro = 0;
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		tiro[i] = nullptr;
 	}
@@ -29,18 +29,31 @@ Sprite Nave::getSprite()
 	return sprite;
 }
 
+void Nave::setSpriteDefault()
+{
+}
+
+void Nave::setSpriteEsquerda()
+{
+}
+
+void Nave::setSpriteDireita()
+{
+}
+
 void Nave::atirar(float x, float y, Cores c)
 {
-	if (indexTiro > 19)
+
+	tiro[indexTiro] = new Tiro(x, y, c);
+
+	if (indexTiro >= 9)
 	{
-		indexTiro = 0;
+        indexTiro = 0;
 	}
 	else
 	{
 		indexTiro++;
 	}
-
-	tiro[indexTiro] = new Tiro(x, y, c);
 }
 
 

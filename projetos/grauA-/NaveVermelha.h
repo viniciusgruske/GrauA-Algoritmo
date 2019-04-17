@@ -8,6 +8,10 @@ public:
 
 	Sprite getSprite() override { return sprite; }
 
+	void setSpriteDefault() override;
+	void setSpriteEsquerda() override;
+	void setSpriteDireita() override;
+
 private:
 	void inicializar();
 };

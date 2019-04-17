@@ -21,6 +21,8 @@ public:
 	float getY() { return y; }
 	float getVelocidade() { return velocidade; }
 
+	Nave *getNave(int j) { return naves[j]; }
+
 private:
 	Nave *naves[3]{};
 	Cores naveAtual;

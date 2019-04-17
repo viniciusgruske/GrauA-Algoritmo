@@ -102,6 +102,7 @@
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Meteoro.cpp" />
     <ClCompile Include="Nave.cpp" />
     <ClCompile Include="NaveAzul.cpp" />
     <ClCompile Include="NaveVerde.cpp" />
@@ -111,6 +112,7 @@
   <ItemGroup>
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Meteoro.h" />
     <ClInclude Include="Nave.h" />
     <ClInclude Include="NaveAzul.h" />
     <ClInclude Include="NaveVerde.h" />

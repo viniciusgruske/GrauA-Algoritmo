@@ -32,6 +32,7 @@ void Jogador::atualizar()
 	if (gTeclado.segurando[TECLA_ESQ] && x > (naves[naveAtual]->getSprite().getLargura() / 2))
 	{
 		x -= velocidade;
+		naves[naveAtual]->setSpriteEsquerda();
 	}
 	if (gTeclado.segurando[TECLA_BAIXO] && y < (gJanela.getAltura() - (naves[naveAtual]->getSprite().getAltura() / 2)))
 	{
@@ -40,6 +41,15 @@ void Jogador::atualizar()
 	if (gTeclado.segurando[TECLA_DIR] && x < (gJanela.getLargura() - (naves[naveAtual]->getSprite().getLargura() / 2)))
 	{
 		x += velocidade;
+		naves[naveAtual]->setSpriteDireita();
+	}
+	if (gTeclado.segurando[TECLA_ESQ] && gTeclado.segurando[TECLA_DIR])
+	{
+		naves[naveAtual]->setSpriteDefault();
+	}
+	if (gTeclado.soltou[TECLA_ESQ] || gTeclado.soltou[TECLA_DIR])
+	{
+		naves[naveAtual]->setSpriteDefault();
 	}
 	if (gTeclado.pressionou[TECLA_Q])
 	{
@@ -63,7 +73,7 @@ void Jogador::atualizar()
 	cdTiro++;
 	for (int j = 0; j < 3; j++)
 	{
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			if (naves[j]->getTiro(i) != nullptr)
 			{
@@ -79,7 +89,7 @@ void Jogador::desenhar()
 
 	for (int j = 0; j < 3; j++)
 	{
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			if (naves[j]->getTiro(i) != nullptr)
 			{
