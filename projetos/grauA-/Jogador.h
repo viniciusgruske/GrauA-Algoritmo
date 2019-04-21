@@ -28,6 +28,8 @@ private:
 	Cores naveAtual;
 
 	int cdTiro;
+	int hp;
+	bool vivo;
 
 	float x, y, velocidade;
 };

@@ -10,15 +10,24 @@ Jogo::~Jogo()
 
 void Jogo::inicializar()
 {
-	uniInicializar(800, 600, false);
+	uniInicializar(1280, 720, false);
 
 	srand(time(NULL));
 
 	//	O resto da inicialização vem aqui!
 	//	...
 	carregarAssets();
+
+	cdMeteoro = 0;
+	indexMeteoro = 0;
+
 	jogador = new Jogador();
 	jogador->inicializar();
+
+	for (int i = 0; i < 100; i++)
+	{
+		meteoros[i] = nullptr;
+	}
 
 	meteoros[0] = new Meteoro();
 }
@@ -40,38 +49,24 @@ void Jogo::executar()
 		//	Seu código vem aqui!
 		//	...
 
+		// Jogador atualizar
 		jogador->atualizar();
 		jogador->desenhar();
 
-		if (meteoros[0] != nullptr)
+		// Meteoro atualizar
+		for (int i = 0; i < 100; i++)
 		{
-			meteoros[0]->atualizar();
-			meteoros[0]->desenhar();
-		} 
-
-		for (int j = 0; j < 3; j++)
-		{
-			for (int i = 0; i < 10; i++)
+			if (meteoros[i] != nullptr)
 			{
-				if (jogador->getNave(j)->getTiro(i) != nullptr && meteoros[0] != nullptr)
-				{
-					if (uniTestarColisaoCirculoComCirculo(jogador->getNave(j)->getTiro(i)->getX(), jogador->getNave(j)->getTiro(i)->getY(), (jogador->getNave(j)->getTiro(i)->getSprite().getAltura() / 2), meteoros[0]->getX(), meteoros[0]->getY(), (meteoros[0]->getSprite().getAltura() / 2)))
-					{
-						if (jogador->getNave(j)->getTiro(i)->getCor() == meteoros[0]->getCor())
-						{
-							
-							//meteoros[0] = nullptr;
-							//meteoros[0]->~Meteoro();
-							delete jogador->getNave(j)->getTiro(i);
-							jogador->getNave(j)->setTiroNull(i);
-
-							delete meteoros[0];
-							meteoros[0] = nullptr;
-						}
-					}
-				}
+				meteoros[i]->atualizar();
+				meteoros[i]->desenhar();
 			}
 		}
+
+		criarMeteoro();
+
+		// Colisão Meteoro <> Tiro
+		colisaoMeteoroTiro();
 
 		uniTerminarFrame();
 	}
@@ -79,10 +74,10 @@ void Jogo::executar()
 
 void Jogo::carregarAssets()
 {
-	ifstream carregarAssets("assets/loader.txt");
-
 	string tipo, nome, caminho;
 	int tamanho, animacoes, frames;
+
+	ifstream carregarAssets("assets\\loader.txt");
 
 	if (carregarAssets.is_open())
 	{
@@ -126,5 +121,47 @@ void Jogo::carregarAssets()
 	else
 	{
 		cout << "Erro ao carregar assets.";
+	}
+}
+
+void Jogo::criarMeteoro()
+{
+	if ((cdMeteoro % 100) == 0)
+	{
+		meteoros[indexMeteoro] = new Meteoro();
+		indexMeteoro++;
+	}
+	cdMeteoro++;
+}
+
+void Jogo::colisaoMeteoroTiro()
+{
+	for (int j = 0; j < 3; j++)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			for (int k = 0; k < 100; k++)
+			{
+				if (jogador->getNave(j)->getTiro(i) != nullptr && meteoros[k] != nullptr)
+				{
+					if (uniTestarColisaoCirculoComCirculo(jogador->getNave(j)->getTiro(i)->getX(), jogador->getNave(j)->getTiro(i)->getY(), (jogador->getNave(j)->getTiro(i)->getSprite().getAltura() / 2), meteoros[k]->getX(), meteoros[k]->getY(), (meteoros[k]->getSprite().getAltura() / 2)))
+					{
+						if (jogador->getNave(j)->getTiro(i)->getCor() == meteoros[k]->getCor())
+						{
+							delete jogador->getNave(j)->getTiro(i);
+							jogador->getNave(j)->setTiroNull(i);
+
+							delete meteoros[k];
+							meteoros[k] = nullptr;
+						} 
+						else
+						{
+							delete jogador->getNave(j)->getTiro(i);
+							jogador->getNave(j)->setTiroNull(i);
+						}
+					}
+				}
+			}
+		}
 	}
 }

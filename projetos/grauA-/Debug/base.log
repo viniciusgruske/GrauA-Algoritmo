@@ -1,0 +1,4 @@
+﻿  Jogo.cpp
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(15): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(147): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+  base.vcxproj -> C:\Users\vinic\Documents\GitHub\GrauA-Algoritmo\projetos\grauA-\bin\base-debug.exe

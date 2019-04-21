@@ -43,6 +43,7 @@ void Nave::setSpriteDireita()
 
 void Nave::atirar(float x, float y, Cores c)
 {
+	delete tiro[indexTiro];
 
 	tiro[indexTiro] = new Tiro(x, y, c);
 

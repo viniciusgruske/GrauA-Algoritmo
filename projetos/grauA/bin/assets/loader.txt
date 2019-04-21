@@ -1,0 +1,1 @@
+sprite assets/sprites/naves/naveVermelha.png 1 1

@@ -1,0 +1,27 @@
+﻿  NaveVermelha.cpp
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveverde.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveazul.h(4): error C2504: 'Nave': classe base indefinida
+  NaveVerde.cpp
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\navevermelha.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveazul.h(4): error C2504: 'Nave': classe base indefinida
+  NaveAzul.cpp
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\navevermelha.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveverde.h(4): error C2504: 'Nave': classe base indefinida
+  Nave.cpp
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\navevermelha.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveverde.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveazul.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\nave.cpp(44): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+  Gerando Código...
+  Compilando...
+  Jogo.cpp
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\navevermelha.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveverde.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveazul.h(4): error C2504: 'Nave': classe base indefinida
+  Gerando Código...
+  Compilando...
+  main.cpp
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\navevermelha.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveverde.h(4): error C2504: 'Nave': classe base indefinida
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua\naveazul.h(4): error C2504: 'Nave': classe base indefinida
+  Gerando Código...

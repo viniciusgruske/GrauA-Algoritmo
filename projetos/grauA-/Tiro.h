@@ -22,4 +22,3 @@ private:
 	Cores cor;
 	Sprite sprite;
 };
-

@@ -15,8 +15,11 @@ public:
 	void executar();
 private:
 	void carregarAssets();
+	void criarMeteoro();
+	void colisaoMeteoroTiro();
 
 	Jogador *jogador;
 	Meteoro *meteoros[100];
+	int indexMeteoro, cdMeteoro;
 };
 
