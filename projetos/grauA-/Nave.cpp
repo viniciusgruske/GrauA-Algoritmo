@@ -33,11 +33,11 @@ void Nave::setSpriteDefault()
 {
 }
 
-void Nave::setSpriteEsquerda()
+void Nave::setSpriteCima()
 {
 }
 
-void Nave::setSpriteDireita()
+void Nave::setSpriteBaixo()
 {
 }
 

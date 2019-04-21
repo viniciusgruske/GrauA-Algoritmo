@@ -20,16 +20,21 @@ void Jogo::inicializar()
 
 	cdMeteoro = 0;
 	indexMeteoro = 0;
+	bgX = 0;
+	bgParalaxX = 0;
 
 	jogador = new Jogador();
 	jogador->inicializar();
+
+	bg1.setSpriteSheet("bg");
+	bg2.setSpriteSheet("bg");
+	bgParalax1.setSpriteSheet("bgParalax");
+	bgParalax2.setSpriteSheet("bgParalax");
 
 	for (int i = 0; i < 100; i++)
 	{
 		meteoros[i] = nullptr;
 	}
-
-	meteoros[0] = new Meteoro();
 }
 
 void Jogo::finalizar()
@@ -48,10 +53,12 @@ void Jogo::executar()
 
 		//	Seu código vem aqui!
 		//	...
+		background();
 
 		// Jogador atualizar
 		jogador->atualizar();
 		jogador->desenhar();
+
 
 		// Meteoro atualizar
 		for (int i = 0; i < 100; i++)
@@ -126,11 +133,18 @@ void Jogo::carregarAssets()
 
 void Jogo::criarMeteoro()
 {
-	if ((cdMeteoro % 100) == 0)
+	if ((cdMeteoro % 300) == 0)
 	{
 		meteoros[indexMeteoro] = new Meteoro();
 		indexMeteoro++;
 	}
+
+	if ((rand() % 1000) == 0)
+	{
+		meteoros[indexMeteoro] = new Meteoro();
+		indexMeteoro++;
+	}
+
 	cdMeteoro++;
 }
 
@@ -153,7 +167,7 @@ void Jogo::colisaoMeteoroTiro()
 
 							delete meteoros[k];
 							meteoros[k] = nullptr;
-						} 
+						}
 						else
 						{
 							delete jogador->getNave(j)->getTiro(i);
@@ -164,4 +178,24 @@ void Jogo::colisaoMeteoroTiro()
 			}
 		}
 	}
+}
+
+void Jogo::background()
+{
+	if (bgX <= -gJanela.getLargura() / 2)
+	{
+		bgX = gJanela.getLargura() / 2;
+	}
+	if (bgParalaxX <= -gJanela.getLargura() / 2)
+	{
+		bgParalaxX = gJanela.getLargura() / 2;
+	}
+
+	bg1.desenhar(bgX, gJanela.getAltura() / 2);
+	bg2.desenhar(bgX + gJanela.getLargura(), gJanela.getAltura() / 2);
+	bgParalax1.desenhar(bgParalaxX, gJanela.getAltura() / 2);
+	bgParalax2.desenhar(bgParalaxX + gJanela.getLargura(), gJanela.getAltura() / 2);
+
+	bgX -= 0.1;
+	bgParalaxX -= 0.2;
 }

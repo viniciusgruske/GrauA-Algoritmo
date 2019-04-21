@@ -27,7 +27,7 @@ Tiro::~Tiro()
 
 void Tiro::atualizar()
 {
-	y -= velocidade;
+	x += velocidade;
 }
 
 void Tiro::desenhar()

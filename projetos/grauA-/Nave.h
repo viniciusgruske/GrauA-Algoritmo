@@ -14,8 +14,8 @@ public:
 	virtual Sprite getSprite();
 
 	virtual void setSpriteDefault();
-	virtual void setSpriteEsquerda();
-	virtual void setSpriteDireita();
+	virtual void setSpriteCima();
+	virtual void setSpriteBaixo();
 
 	void atirar(float x, float y, Cores c);
 

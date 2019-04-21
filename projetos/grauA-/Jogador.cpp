@@ -28,26 +28,26 @@ void Jogador::atualizar()
 	if (gTeclado.segurando[TECLA_CIMA] && y > (naves[naveAtual]->getSprite().getAltura() / 2))
 	{
 		y -= velocidade;
+		naves[naveAtual]->setSpriteCima();
 	}
 	if (gTeclado.segurando[TECLA_ESQ] && x > (naves[naveAtual]->getSprite().getLargura() / 2))
 	{
 		x -= velocidade;
-		naves[naveAtual]->setSpriteEsquerda();
 	}
 	if (gTeclado.segurando[TECLA_BAIXO] && y < (gJanela.getAltura() - (naves[naveAtual]->getSprite().getAltura() / 2)))
 	{
 		y += velocidade;
+		naves[naveAtual]->setSpriteBaixo();
 	}
 	if (gTeclado.segurando[TECLA_DIR] && x < (gJanela.getLargura() - (naves[naveAtual]->getSprite().getLargura() / 2)))
 	{
 		x += velocidade;
-		naves[naveAtual]->setSpriteDireita();
 	}
-	if (gTeclado.segurando[TECLA_ESQ] && gTeclado.segurando[TECLA_DIR])
+	if (gTeclado.segurando[TECLA_CIMA] && gTeclado.segurando[TECLA_BAIXO])
 	{
 		naves[naveAtual]->setSpriteDefault();
 	}
-	if (gTeclado.soltou[TECLA_ESQ] || gTeclado.soltou[TECLA_DIR])
+	if (gTeclado.soltou[TECLA_CIMA] || gTeclado.soltou[TECLA_BAIXO])
 	{
 		naves[naveAtual]->setSpriteDefault();
 	}

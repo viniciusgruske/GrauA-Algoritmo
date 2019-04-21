@@ -17,14 +17,14 @@ void NaveVerde::setSpriteDefault()
 	sprite.setSpriteSheet("naveVerde");
 }
 
-void NaveVerde::setSpriteEsquerda()
+void NaveVerde::setSpriteCima()
 {
-	sprite.setSpriteSheet("naveVerdeEsquerda");
+	sprite.setSpriteSheet("naveVerdeCima");
 }
 
-void NaveVerde::setSpriteDireita()
+void NaveVerde::setSpriteBaixo()
 {
-	sprite.setSpriteSheet("naveVerdeDireita");
+	sprite.setSpriteSheet("naveVerdeBaixo");
 }
 
 void NaveVerde::inicializar()

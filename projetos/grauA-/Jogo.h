@@ -18,8 +18,13 @@ private:
 	void criarMeteoro();
 	void colisaoMeteoroTiro();
 
+	void background();
+
 	Jogador *jogador;
 	Meteoro *meteoros[100];
+	Sprite bg1, bg2, bgParalax1, bgParalax2;
 	int indexMeteoro, cdMeteoro;
+
+	float bgX, bgParalaxX;
 };
 
