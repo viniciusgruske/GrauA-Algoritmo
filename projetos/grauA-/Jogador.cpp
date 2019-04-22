@@ -98,3 +98,21 @@ void Jogador::desenhar()
 		}
 	}
 }
+
+Sprite Jogador::getSprite()
+{
+	int i;
+	if (naveAtual == Vermelha)
+	{
+		i = 0;
+	}
+	else if (naveAtual == Verde)
+	{
+		i = 1;
+	}
+	else 
+	{
+		i = 2;
+	}
+	return naves[i]->getSprite();;
+}

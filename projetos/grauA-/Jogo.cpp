@@ -18,22 +18,20 @@ void Jogo::inicializar()
 	//	...
 	carregarAssets();
 
-	cdMeteoro = 0;
-	indexMeteoro = 0;
+	tela = telaMenu;
+	jogador = nullptr;
+
 	bgX = 0;
 	bgParalaxX = 0;
-
-	jogador = new Jogador();
-	jogador->inicializar();
 
 	bg1.setSpriteSheet("bg");
 	bg2.setSpriteSheet("bg");
 	bgParalax1.setSpriteSheet("bgParalax");
 	bgParalax2.setSpriteSheet("bgParalax");
 
-	for (int i = 0; i < 100; i++)
+//	for (int i = 0; i < 100; i++)
 	{
-		meteoros[i] = nullptr;
+//		meteoros[i] = nullptr;
 	}
 }
 
@@ -47,7 +45,7 @@ void Jogo::finalizar()
 
 void Jogo::executar()
 {
-	while (!gTeclado.soltou[TECLA_ESC] && !gEventos.sair)
+	while (!gEventos.sair)
 	{
 		uniIniciarFrame();
 
@@ -55,26 +53,18 @@ void Jogo::executar()
 		//	...
 		background();
 
-		// Jogador atualizar
-		jogador->atualizar();
-		jogador->desenhar();
-
-
-		// Meteoro atualizar
-		for (int i = 0; i < 100; i++)
+		switch (tela)
 		{
-			if (meteoros[i] != nullptr)
-			{
-				meteoros[i]->atualizar();
-				meteoros[i]->desenhar();
-			}
+		case telaMenu:
+			executarTelaMenu();
+			break;
+		case telaJogo:
+			executarTelaJogo();
+			break;
+		case telaGameOver:
+			executarTelaGameOver();
+			break;
 		}
-
-		criarMeteoro();
-
-		// Colisão Meteoro <> Tiro
-		colisaoMeteoroTiro();
-
 		uniTerminarFrame();
 	}
 }
@@ -178,6 +168,82 @@ void Jogo::colisaoMeteoroTiro()
 			}
 		}
 	}
+}
+
+void Jogo::colisaoMeteoroNave()
+{
+	for (int k = 0; k < 100; k++)
+	{
+		if (meteoros[k] != nullptr)
+		{
+			if (uniTestarColisaoCirculoComCirculo(jogador->getX(), jogador->getY(), (jogador->getSprite().getAltura() / 2), meteoros[k]->getX(), meteoros[k]->getY(), (meteoros[k]->getSprite().getAltura() / 2)))
+			{
+				//Game Over
+
+				delete meteoros[k];
+				meteoros[k] = nullptr;
+			}
+		}
+	}
+}
+
+void Jogo::resetar()
+{
+	if (jogador != nullptr)
+	{
+		delete jogador;
+	}	
+	jogador = new Jogador();
+	jogador->inicializar();
+
+	cdMeteoro = 0;
+	indexMeteoro = 0;
+
+	for (int i = 0; i < 100; i++)
+	{
+		meteoros[i] = nullptr;
+	}
+}
+
+void Jogo::executarTelaMenu()
+{
+	if (gTeclado.pressionou[TECLA_ESPACO])
+	{
+		tela = telaJogo;
+		resetar();
+	}
+}
+
+void Jogo::executarTelaJogo()
+{
+	if (gTeclado.pressionou[TECLA_ESC])
+	{
+		tela = telaMenu;
+	}
+	// Jogador atualizar
+	jogador->atualizar();
+	jogador->desenhar();
+
+	// Meteoro atualizar
+	for (int i = 0; i < 100; i++)
+	{
+		if (meteoros[i] != nullptr)
+		{
+			meteoros[i]->atualizar();
+			meteoros[i]->desenhar();
+		}
+	}
+	criarMeteoro();
+
+	// Colisão Meteoro <> Tiro
+	colisaoMeteoroTiro();
+
+	// Colisão Meteoro <> Nave
+	colisaoMeteoroNave();
+}
+
+void Jogo::executarTelaGameOver()
+{
 }
 
 void Jogo::background()

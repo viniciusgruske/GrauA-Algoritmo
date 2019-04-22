@@ -1,4 +1,13 @@
-﻿  NaveVerde.cpp
-  NaveAzul.cpp
-  Gerando Código...
+﻿  Jogo.cpp
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(15): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(155): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(183): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(257): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(261): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(264): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(265): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(266): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(267): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(269): warning C4305: '-=': truncamento de 'double' para 'float'
+c:\users\vinic\documents\github\graua-algoritmo\projetos\graua-\jogo.cpp(270): warning C4305: '-=': truncamento de 'double' para 'float'
   base.vcxproj -> C:\Users\vinic\Documents\GitHub\GrauA-Algoritmo\projetos\grauA-\bin\base-debug.exe

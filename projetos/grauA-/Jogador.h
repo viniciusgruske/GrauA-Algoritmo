@@ -20,6 +20,8 @@ public:
 	float getX() { return x; }
 	float getY() { return y; }
 	float getVelocidade() { return velocidade; }
+	Cores getCor() { return naveAtual; }
+	Sprite getSprite();
 
 	Nave *getNave(int j) { return naves[j]; }
 
