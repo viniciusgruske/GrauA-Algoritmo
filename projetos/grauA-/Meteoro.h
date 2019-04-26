@@ -18,7 +18,7 @@ public:
 	Sprite getSprite() { return sprite; }
 
 private:
-	float x, y, velocidade;
+	float x, y, velocidadeX, velocidadeY;
 	Sprite sprite;
 	Cores cor;
 	int seed;

@@ -33,6 +33,6 @@ private:
 	int hp;
 	bool vivo;
 
-	float x, y, velocidade;
+	float x, y, velocidade, inerciaX, inerciaY;
 };
 

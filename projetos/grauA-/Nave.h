@@ -11,7 +11,7 @@ public:
 	void inicializar();
 	void desenhar(float x, float y);
 
-	virtual Sprite getSprite();
+	Sprite getSprite();
 
 	virtual void setSpriteDefault();
 	virtual void setSpriteCima();
@@ -26,6 +26,6 @@ public:
 protected:
 	int indexTiro;
 	Sprite sprite;
-	Tiro *tiro[10];
+	Tiro *tiro[15];
 };
 

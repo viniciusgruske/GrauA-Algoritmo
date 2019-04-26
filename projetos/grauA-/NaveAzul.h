@@ -6,7 +6,7 @@ public:
 	NaveAzul();
 	~NaveAzul();
 
-	Sprite getSprite() override { return sprite; }
+	//Sprite getSprite() override { return sprite; }
 
 	void setSpriteDefault() override;
 	void setSpriteCima() override;

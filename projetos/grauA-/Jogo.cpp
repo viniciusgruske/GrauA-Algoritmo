@@ -123,18 +123,30 @@ void Jogo::carregarAssets()
 
 void Jogo::criarMeteoro()
 {
-	if ((cdMeteoro % 300) == 0)
+	if ((cdMeteoro % 20) == 0)
 	{
 		meteoros[indexMeteoro] = new Meteoro();
-		indexMeteoro++;
+		if (indexMeteoro >= 99)
+		{
+			indexMeteoro = 0;
+		}
+		else
+		{
+			indexMeteoro++;
+		}
 	}
-
 	if ((rand() % 1000) == 0)
 	{
 		meteoros[indexMeteoro] = new Meteoro();
-		indexMeteoro++;
+		if (indexMeteoro >= 99)
+		{
+			indexMeteoro = 0;
+		}
+		else
+		{
+			indexMeteoro++;
+		}
 	}
-
 	cdMeteoro++;
 }
 
@@ -142,7 +154,7 @@ void Jogo::colisaoMeteoroTiro()
 {
 	for (int j = 0; j < 3; j++)
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			for (int k = 0; k < 100; k++)
 			{
@@ -262,6 +274,6 @@ void Jogo::background()
 	bgParalax1.desenhar(bgParalaxX, gJanela.getAltura() / 2);
 	bgParalax2.desenhar(bgParalaxX + gJanela.getLargura(), gJanela.getAltura() / 2);
 
-	bgX -= 0.1;
-	bgParalaxX -= 0.2;
+	bgX -= .1;
+	bgParalaxX -= .2;
 }

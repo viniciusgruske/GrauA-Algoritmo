@@ -13,7 +13,7 @@ Nave::~Nave()
 void Nave::inicializar()
 {
 	indexTiro = 0;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 15; i++)
 	{
 		tiro[i] = nullptr;
 	}
@@ -47,7 +47,7 @@ void Nave::atirar(float x, float y, Cores c)
 
 	tiro[indexTiro] = new Tiro(x, y, c);
 
-	if (indexTiro >= 9)
+	if (indexTiro >= 14)
 	{
         indexTiro = 0;
 	}

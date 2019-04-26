@@ -1,0 +1,15 @@
+sprite naveVermelha assets/sprites/naveVermelha.png 1 1
+sprite naveVermelhaEsquerda assets/sprites/naveVermelhaEsquerda.png 1 1
+sprite naveVermelhaDireita assets/sprites/naveVermelhaDireita.png 1 1
+sprite naveVerdeEsquerda assets/sprites/naveVerdeEsquerda.png 1 1
+sprite naveVerdeDireita assets/sprites/naveVerdeDireita.png 1 1
+sprite naveAzulEsquerda assets/sprites/naveAzulEsquerda.png 1 1
+sprite naveAzulDireita assets/sprites/naveAzulDireita.png 1 1
+sprite naveVerde assets/sprites/naveVerde.png 1 1
+sprite naveAzul assets/sprites/naveAzul.png 1 1
+sprite tiroVermelho assets/sprites/tiroVermelho.png 1 1
+sprite tiroVerde assets/sprites/tiroVerde.png 1 1
+sprite tiroAzul assets/sprites/tiroAzul.png 1 1
+sprite meteoroVermelho assets/sprites/meteoroVermelho.png 1 1
+sprite meteoroVerde assets/sprites/meteoroVerde.png 1 1
+sprite meteoroAzul assets/sprites/meteoroAzul.png 1 1

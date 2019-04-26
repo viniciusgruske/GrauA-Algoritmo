@@ -16,9 +16,11 @@ void Jogador::inicializar()
 	naves[1] = (Nave *) new NaveVerde();
 	naves[2] = (Nave *) new NaveAzul();
 
-	x = 300;
-	y = 200;
+	x = gJanela.getLargura() / 4;
+	y = gJanela.getAltura() / 2;
 	cdTiro = 0;
+	inerciaX = 0;
+	inerciaY = 0;
 	naveAtual = Vermelha;
 	velocidade = 3;
 }
@@ -47,9 +49,23 @@ void Jogador::atualizar()
 	{
 		naves[naveAtual]->setSpriteDefault();
 	}
-	if (gTeclado.soltou[TECLA_CIMA] || gTeclado.soltou[TECLA_BAIXO])
+	if (gTeclado.soltou[TECLA_CIMA])
 	{
 		naves[naveAtual]->setSpriteDefault();
+		inerciaY = -velocidade;
+	}
+	if (gTeclado.soltou[TECLA_ESQ])
+	{
+		inerciaX = -velocidade;
+	}
+	if (gTeclado.soltou[TECLA_BAIXO])
+	{
+		naves[naveAtual]->setSpriteDefault();
+		inerciaY = velocidade;
+	}
+	if (gTeclado.soltou[TECLA_DIR])
+	{
+		inerciaX = velocidade;
 	}
 	if (gTeclado.pressionou[TECLA_Q])
 	{
@@ -68,12 +84,35 @@ void Jogador::atualizar()
 		if ((cdTiro % 20) == 0)
 		{
 			naves[naveAtual]->atirar(x, y, naveAtual);
+			cdTiro = 0;
 		}
 	}
-	cdTiro++;
+
+	if (inerciaX != 0)
+	{
+		x += inerciaX;
+		inerciaX -= inerciaX * 0.025;
+	}
+	/*if (inerciaY != 0)
+	{
+		x += inerciaY;
+		inerciaY -= inerciaY * 0.025;
+	}*/
+
+	// Cooldown Tiro
+	if (cdTiro < 20)
+	{
+		cdTiro++;
+	}
+	else
+	{
+		cdTiro = 20;
+	}
+
+	// Atualizar Tiro da Nave
 	for (int j = 0; j < 3; j++)
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			if (naves[j]->getTiro(i) != nullptr)
 			{
@@ -87,9 +126,10 @@ void Jogador::desenhar()
 {
 	naves[naveAtual]->desenhar(x, y);
 
+	// Desenhar Tiro da Nave
 	for (int j = 0; j < 3; j++)
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 15; i++)
 		{
 			if (naves[j]->getTiro(i) != nullptr)
 			{
@@ -110,7 +150,7 @@ Sprite Jogador::getSprite()
 	{
 		i = 1;
 	}
-	else 
+	else
 	{
 		i = 2;
 	}
