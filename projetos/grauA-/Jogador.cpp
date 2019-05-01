@@ -30,20 +30,26 @@ void Jogador::atualizar()
 	if (gTeclado.segurando[TECLA_CIMA] && y > (naves[naveAtual]->getSprite().getAltura() / 2))
 	{
 		y -= velocidade;
+		inerciaY = 0;
+
 		naves[naveAtual]->setSpriteCima();
 	}
 	if (gTeclado.segurando[TECLA_ESQ] && x > (naves[naveAtual]->getSprite().getLargura() / 2))
 	{
 		x -= velocidade;
+		inerciaX = 0;
 	}
 	if (gTeclado.segurando[TECLA_BAIXO] && y < (gJanela.getAltura() - (naves[naveAtual]->getSprite().getAltura() / 2)))
 	{
 		y += velocidade;
+		inerciaY = 0;
+
 		naves[naveAtual]->setSpriteBaixo();
 	}
 	if (gTeclado.segurando[TECLA_DIR] && x < (gJanela.getLargura() - (naves[naveAtual]->getSprite().getLargura() / 2)))
 	{
 		x += velocidade;
+		inerciaX = 0;
 	}
 	if (gTeclado.segurando[TECLA_CIMA] && gTeclado.segurando[TECLA_BAIXO])
 	{
@@ -88,16 +94,16 @@ void Jogador::atualizar()
 		}
 	}
 
-	if (inerciaX != 0)
+	if (inerciaX != 0 && x > (naves[naveAtual]->getSprite().getAltura() / 2) && x < (gJanela.getLargura() - (naves[naveAtual]->getSprite().getLargura() / 2)))
 	{
 		x += inerciaX;
-		inerciaX -= inerciaX * 0.025;
+		inerciaX -= inerciaX * 0.02;
 	}
-	/*if (inerciaY != 0)
+	if (inerciaY != 0 && y > (naves[naveAtual]->getSprite().getAltura() / 2) && y < (gJanela.getAltura() - (naves[naveAtual]->getSprite().getAltura() / 2)))
 	{
-		x += inerciaY;
-		inerciaY -= inerciaY * 0.025;
-	}*/
+		y += inerciaY;
+		inerciaY -= inerciaY * 0.02;
+	}
 
 	// Cooldown Tiro
 	if (cdTiro < 20)

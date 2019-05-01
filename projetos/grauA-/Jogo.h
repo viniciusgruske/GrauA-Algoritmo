@@ -18,6 +18,7 @@ public:
 private:
 	void carregarAssets();
 	void criarMeteoro();
+	void criarMeteoroColisao(int i, Cores c, float x, float y, float e, float vX);
 	void colisaoMeteoroTiro();
 	void colisaoMeteoroNave();
 

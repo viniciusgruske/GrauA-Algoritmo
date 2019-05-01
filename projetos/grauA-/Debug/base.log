@@ -1,6 +1,14 @@
-﻿  Jogador.cpp
-c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogador.cpp(19): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
-c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogador.cpp(20): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
-c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogador.cpp(94): warning C4244: '-=': conversão de 'double' para 'float', possível perda de dados
+﻿  Jogo.cpp
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(15): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(179): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(222): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(296): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(300): warning C4244: '=': conversão de 'int' para 'float', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(303): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(304): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(305): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(306): warning C4244: 'argumento': conversão de 'float' para 'int', possível perda de dados
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(308): warning C4305: '-=': truncamento de 'double' para 'float'
+c:\users\vgdorneles\documents\github\algedcpp_20191\graua-algoritmo\projetos\graua-\jogo.cpp(309): warning C4305: '-=': truncamento de 'double' para 'float'
   base.vcxproj -> C:\Users\vgdorneles\Documents\GitHub\AlgEDCPP_20191\GrauA-Algoritmo\projetos\grauA-\bin\base-debug.exe
   base.vcxproj -> C:\Users\vgdorneles\Documents\GitHub\AlgEDCPP_20191\GrauA-Algoritmo\projetos\grauA-\bin\base-debug.pdb (Full PDB)

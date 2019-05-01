@@ -6,6 +6,7 @@ class Meteoro
 {
 public:
 	Meteoro();
+	Meteoro(Cores c, float x, float y, float e, float vX);
 	~Meteoro();
 
 	void inicializar();
@@ -15,6 +16,8 @@ public:
 	Cores getCor() { return cor; }
 	float getX() { return x; }
 	float getY() { return y; }
+	float getVelocidadeX() { return velocidadeX; }
+	float getVelocidadeY() { return velocidadeY; }
 	Sprite getSprite() { return sprite; }
 
 private:

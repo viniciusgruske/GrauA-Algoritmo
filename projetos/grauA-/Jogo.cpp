@@ -123,7 +123,7 @@ void Jogo::carregarAssets()
 
 void Jogo::criarMeteoro()
 {
-	if ((cdMeteoro % 20) == 0)
+	if ((cdMeteoro % 300) == 0)
 	{
 		meteoros[indexMeteoro] = new Meteoro();
 		if (indexMeteoro >= 99)
@@ -150,6 +150,22 @@ void Jogo::criarMeteoro()
 	cdMeteoro++;
 }
 
+void Jogo::criarMeteoroColisao(int i, Cores c, float x, float y, float e, float vX)
+{
+	for (int j = 0; j < i; j++)
+	{
+		meteoros[indexMeteoro] = new Meteoro(c, x, y, e, vX);
+		if (indexMeteoro >= 99)
+		{
+			indexMeteoro = 0;
+		}
+		else
+		{
+			indexMeteoro++;
+		}
+	}
+}
+
 void Jogo::colisaoMeteoroTiro()
 {
 	for (int j = 0; j < 3; j++)
@@ -167,8 +183,23 @@ void Jogo::colisaoMeteoroTiro()
 							delete jogador->getNave(j)->getTiro(i);
 							jogador->getNave(j)->setTiroNull(i);
 
-							delete meteoros[k];
-							meteoros[k] = nullptr;
+							if (meteoros[k]->getSprite().getEscalaX() == 1)
+							{
+								criarMeteoroColisao(2, meteoros[k]->getCor(), meteoros[k]->getX(), meteoros[k]->getY(), 0.75, meteoros[k]->getVelocidadeX());
+								delete meteoros[k];
+								meteoros[k] = nullptr;
+							}
+							else if (meteoros[k]->getSprite().getEscalaX() == 0.75)
+							{
+								criarMeteoroColisao(2, meteoros[k]->getCor(), meteoros[k]->getX(), meteoros[k]->getY(), 0.5, meteoros[k]->getVelocidadeX());
+								delete meteoros[k];
+								meteoros[k] = nullptr;
+							}
+							else
+							{
+								delete meteoros[k];
+								meteoros[k] = nullptr;
+							}
 						}
 						else
 						{
