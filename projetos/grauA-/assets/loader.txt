@@ -15,3 +15,7 @@ sprite tiroAzul assets/sprites/tiroAzul.png 1 1
 sprite meteoroVermelho assets/sprites/meteoroVermelho.png 1 1
 sprite meteoroVerde assets/sprites/meteoroVerde.png 1 1
 sprite meteoroAzul assets/sprites/meteoroAzul.png 1 1
+botao botaoJogar assets/botoes/botaoJogar.png 3
+botao botaoVoltar assets/botoes/botaoVoltar.png 3
+botao botaoSair assets/botoes/botaoSair.png 3
+sprite pause assets/sprites/pause.png 1 1

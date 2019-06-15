@@ -23,6 +23,7 @@ void Jogador::inicializar()
 	inerciaY = 0;
 	naveAtual = Vermelha;
 	velocidade = 3;
+	vidas = 3;
 }
 
 void Jogador::atualizar()

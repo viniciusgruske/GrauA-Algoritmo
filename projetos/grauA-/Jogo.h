@@ -4,7 +4,7 @@
 #include "Meteoro.h"
 #include <time.h>
 
-enum Telas {telaMenu, telaJogo, telaGameOver};
+enum Telas {telaMenu, telaJogo, telaGameOver, telaPause, sair};
 
 class Jogo
 {
@@ -27,15 +27,19 @@ private:
 	void executarTelaMenu();
 	void executarTelaJogo();
 	void executarTelaGameOver();
+	void executarTelaPause();
 
 	void background();
 
 	Telas tela;
 	Jogador *jogador;
 	Meteoro *meteoros[100];
-	Sprite bg1, bg2, bgParalax1, bgParalax2;
+	//vector <Meteoro> *meteoros;
+	Sprite bg1, bg2, bgParalax1, bgParalax2, pause;
+	BotaoSprite botaoJogar, botaoVoltar, botaoSair;
 	int indexMeteoro, cdMeteoro;
 
 	float bgX, bgParalaxX;
+	bool bgParalax;
 };
 

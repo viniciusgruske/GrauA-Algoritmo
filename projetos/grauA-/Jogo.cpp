@@ -23,16 +23,27 @@ void Jogo::inicializar()
 
 	bgX = 0;
 	bgParalaxX = 0;
+	bgParalax = true;
 
 	bg1.setSpriteSheet("bg");
 	bg2.setSpriteSheet("bg");
 	bgParalax1.setSpriteSheet("bgParalax");
 	bgParalax2.setSpriteSheet("bgParalax");
+	pause.setSpriteSheet("pause");
+
+	botaoJogar.setSpriteSheet("botaoJogar");
+	botaoJogar.setPos(gJanela.getLargura() / 2, 400);
+
+	botaoVoltar.setSpriteSheet("botaoVoltar");
+	botaoVoltar.setPos(gJanela.getLargura() / 2, 600);
+
+	botaoSair.setSpriteSheet("botaoSair");
+	botaoSair.setPos(gJanela.getLargura() / 2, 600);
 
 //	for (int i = 0; i < 100; i++)
-	{
+//	{
 //		meteoros[i] = nullptr;
-	}
+//	}
 }
 
 void Jogo::finalizar()
@@ -45,7 +56,7 @@ void Jogo::finalizar()
 
 void Jogo::executar()
 {
-	while (!gEventos.sair)
+	while (!gEventos.sair && tela != sair)
 	{
 		uniIniciarFrame();
 
@@ -64,6 +75,8 @@ void Jogo::executar()
 		case telaGameOver:
 			executarTelaGameOver();
 			break;
+		case telaPause:
+			executarTelaPause();
 		}
 		uniTerminarFrame();
 	}
@@ -113,6 +126,14 @@ void Jogo::carregarAssets()
 					gRecursos.carregarSpriteSheet(nome, caminho, animacoes, frames);
 				}
 			}
+			else if (tipo == "botao")
+			{
+				carregarAssets >> nome >> caminho >> animacoes;
+				if (!gRecursos.carregouSpriteSheet(nome))
+				{
+					gRecursos.carregarSpriteSheet(nome, caminho, animacoes);
+				}
+			}
 		}
 	}
 	else
@@ -126,6 +147,8 @@ void Jogo::criarMeteoro()
 	if ((cdMeteoro % 300) == 0)
 	{
 		meteoros[indexMeteoro] = new Meteoro();
+		//meteoros->push_back(*new Meteoro);
+
 		if (indexMeteoro >= 99)
 		{
 			indexMeteoro = 0;
@@ -138,6 +161,8 @@ void Jogo::criarMeteoro()
 	if ((rand() % 1000) == 0)
 	{
 		meteoros[indexMeteoro] = new Meteoro();
+		//meteoros->push_back(*new Meteoro);
+		
 		if (indexMeteoro >= 99)
 		{
 			indexMeteoro = 0;
@@ -155,14 +180,16 @@ void Jogo::criarMeteoroColisao(int i, Cores c, float x, float y, float e, float 
 	for (int j = 0; j < i; j++)
 	{
 		meteoros[indexMeteoro] = new Meteoro(c, x, y, e, vX);
-		if (indexMeteoro >= 99)
+		//meteoros->push_back(*new Meteoro(c, x, y, e, vX));
+
+	/*	if (indexMeteoro >= 99)
 		{
 			indexMeteoro = 0;
 		}
 		else
 		{
 			indexMeteoro++;
-		}
+		}*/
 	}
 }
 
@@ -173,8 +200,10 @@ void Jogo::colisaoMeteoroTiro()
 		for (int i = 0; i < 15; i++)
 		{
 			for (int k = 0; k < 100; k++)
+			//for (int k = 0; k < meteoros->size(); k++)
 			{
 				if (jogador->getNave(j)->getTiro(i) != nullptr && meteoros[k] != nullptr)
+				//if (jogador->getNave(j)->getTiro(i) != nullptr)
 				{
 					if (uniTestarColisaoCirculoComCirculo(jogador->getNave(j)->getTiro(i)->getX(), jogador->getNave(j)->getTiro(i)->getY(), (jogador->getNave(j)->getTiro(i)->getSprite().getAltura() / 2), meteoros[k]->getX(), meteoros[k]->getY(), (meteoros[k]->getSprite().getAltura() / 2)))
 					{
@@ -221,7 +250,9 @@ void Jogo::colisaoMeteoroNave()
 		{
 			if (uniTestarColisaoCirculoComCirculo(jogador->getX(), jogador->getY(), (jogador->getSprite().getAltura() / 2), meteoros[k]->getX(), meteoros[k]->getY(), (meteoros[k]->getSprite().getAltura() / 2)))
 			{
-				//Game Over
+				jogador->setVida(-1);
+				jogador->setX(gJanela.getLargura() / 4);
+				jogador->setY(gJanela.getAltura() / 2);	
 
 				delete meteoros[k];
 				meteoros[k] = nullptr;
@@ -250,10 +281,21 @@ void Jogo::resetar()
 
 void Jogo::executarTelaMenu()
 {
-	if (gTeclado.pressionou[TECLA_ESPACO])
+	botaoJogar.desenhar();
+	botaoJogar.atualizar();
+
+	botaoSair.desenhar();
+	botaoSair.atualizar();
+
+	if (botaoJogar.estaClicado())
 	{
 		tela = telaJogo;
 		resetar();
+	}
+
+	if (botaoSair.estaClicado())
+	{
+		tela = sair;
 	}
 }
 
@@ -261,8 +303,15 @@ void Jogo::executarTelaJogo()
 {
 	if (gTeclado.pressionou[TECLA_ESC])
 	{
-		tela = telaMenu;
+		tela = telaPause;
+		bgParalax = false;
 	}
+
+	if (jogador->getVida() <= 0)
+	{
+		tela = telaGameOver;
+	}
+
 	// Jogador atualizar
 	jogador->atualizar();
 	jogador->desenhar();
@@ -289,22 +338,52 @@ void Jogo::executarTelaGameOver()
 {
 }
 
+void Jogo::executarTelaPause()
+{
+	if (gTeclado.pressionou[TECLA_ESC])
+	{
+		tela = telaJogo;
+		bgParalax = true;
+	}
+
+	jogador->desenhar();
+
+	for (int i = 0; i < 100; i++)
+	{
+		if (meteoros[i] != nullptr)
+		{
+			meteoros[i]->desenhar();
+		}
+	}
+
+	pause.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
+
+	botaoSair.desenhar();
+	if (botaoSair.estaClicado())
+	{
+		tela = telaGameOver;
+	}
+}
+
 void Jogo::background()
 {
-	if (bgX <= -gJanela.getLargura() / 2)
-	{
-		bgX = gJanela.getLargura() / 2;
-	}
-	if (bgParalaxX <= -gJanela.getLargura() / 2)
-	{
-		bgParalaxX = gJanela.getLargura() / 2;
-	}
+		if (bgX <= -gJanela.getLargura() / 2)
+		{
+			bgX = gJanela.getLargura() / 2;
+		}
+		if (bgParalaxX <= -gJanela.getLargura() / 2)
+		{
+			bgParalaxX = gJanela.getLargura() / 2;
+		}
 
-	bg1.desenhar(bgX, gJanela.getAltura() / 2);
-	bg2.desenhar(bgX + gJanela.getLargura(), gJanela.getAltura() / 2);
-	bgParalax1.desenhar(bgParalaxX, gJanela.getAltura() / 2);
-	bgParalax2.desenhar(bgParalaxX + gJanela.getLargura(), gJanela.getAltura() / 2);
+		bg1.desenhar(bgX, gJanela.getAltura() / 2);
+		bg2.desenhar(bgX + gJanela.getLargura(), gJanela.getAltura() / 2);
+		bgParalax1.desenhar(bgParalaxX, gJanela.getAltura() / 2);
+		bgParalax2.desenhar(bgParalaxX + gJanela.getLargura(), gJanela.getAltura() / 2);
 
-	bgX -= .1;
-	bgParalaxX -= .2;
+		if (bgParalax)
+		{
+		bgX -= .1;
+		bgParalaxX -= .2;
+		}
 }

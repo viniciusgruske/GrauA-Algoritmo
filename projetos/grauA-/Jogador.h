@@ -16,10 +16,12 @@ public:
 	void setX(float i) { x = i; }
 	void setY(float i) { y = i; }
 	void setVelocidade(float i) { velocidade = i; }
+	void setVida(int i) { vidas += i; }
 
 	float getX() { return x; }
 	float getY() { return y; }
 	float getVelocidade() { return velocidade; }
+	int getVida() { return vidas; }
 	Cores getCor() { return naveAtual; }
 	Sprite getSprite();
 
@@ -30,7 +32,7 @@ private:
 	Cores naveAtual;
 
 	int cdTiro;
-	int hp;
+	int hp, vidas;
 	bool vivo;
 
 	float x, y, velocidade, inerciaX, inerciaY;
