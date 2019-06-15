@@ -21,6 +21,7 @@ private:
 	void criarMeteoroColisao(int i, Cores c, float x, float y, float e, float vX);
 	void colisaoMeteoroTiro();
 	void colisaoMeteoroNave();
+	void controlarDificuldade();
 
 	void resetar();
 
@@ -35,9 +36,10 @@ private:
 	Jogador *jogador;
 	Meteoro *meteoros[100];
 	//vector <Meteoro> *meteoros;
-	Sprite bg1, bg2, bgParalax1, bgParalax2, pause;
+	Sprite bg1, bg2, bgParalax1, bgParalax2, pause, vidas;
 	BotaoSprite botaoJogar, botaoVoltar, botaoSair;
-	int indexMeteoro, cdMeteoro;
+	Texto level;
+	int indexMeteoro, cdMeteoro, dificuldade, cdDificuldade;;
 
 	float bgX, bgParalaxX;
 	bool bgParalax;

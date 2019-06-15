@@ -5,11 +5,11 @@
 class Meteoro
 {
 public:
-	Meteoro();
+	Meteoro(float vX);
 	Meteoro(Cores c, float x, float y, float e, float vX);
 	~Meteoro();
 
-	void inicializar();
+	void inicializar(float vX);
 	void atualizar();
 	void desenhar();
 

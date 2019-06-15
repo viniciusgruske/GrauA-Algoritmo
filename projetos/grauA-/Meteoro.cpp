@@ -2,9 +2,9 @@
 
 
 
-Meteoro::Meteoro()
+Meteoro::Meteoro(float vX)
 {
-	inicializar();
+	inicializar(vX);
 }
 
 Meteoro::Meteoro(Cores c, float x, float y, float e, float vX)
@@ -33,7 +33,7 @@ Meteoro::Meteoro(Cores c, float x, float y, float e, float vX)
 
 	sprite.setEscala(e, e);
 
-	velocidadeX = vX ;
+	velocidadeX = vX;
 
 	seed = rand() % 5;
 	if (seed == 0)
@@ -56,7 +56,7 @@ Meteoro::~Meteoro()
 {
 }
 
-void Meteoro::inicializar()
+void Meteoro::inicializar(float vX)
 {	
 	seed = rand() % 3;
 
@@ -99,7 +99,7 @@ void Meteoro::inicializar()
 	//seed = rand() % 5;
 	//velocidade = 0.3 + 0.3 * seed;
 
-	velocidadeX = 1;
+	velocidadeX = 1 + vX / 10;
 
 	seed = rand() % 5;
 	if (seed == 0)

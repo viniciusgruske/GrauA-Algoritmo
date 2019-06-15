@@ -19,3 +19,7 @@ botao botaoJogar assets/botoes/botaoJogar.png 3
 botao botaoVoltar assets/botoes/botaoVoltar.png 3
 botao botaoSair assets/botoes/botaoSair.png 3
 sprite pause assets/sprites/pause.png 1 1
+fonte fonte16 assets/fontes/fonte.ttf 16
+fonte fonte24 assets/fontes/fonte.ttf 24
+fonte fonte36 assets/fontes/fonte.ttf 36
+fonte fonte48 assets/fontes/fonte.ttf 48

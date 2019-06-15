@@ -20,6 +20,8 @@ void Jogo::inicializar()
 
 	tela = telaMenu;
 	jogador = nullptr;
+	dificuldade = 1;
+	cdDificuldade = 0;
 
 	bgX = 0;
 	bgParalaxX = 0;
@@ -31,6 +33,14 @@ void Jogo::inicializar()
 	bgParalax2.setSpriteSheet("bgParalax");
 	pause.setSpriteSheet("pause");
 
+	vidas.setSpriteSheet("naveVermelha");
+	vidas.setAncora(0.5, 0);
+	vidas.setEscala(0.5, 0.5);
+
+	level.setAncora(0, 0.5);
+	level.setCor(255, 255, 255);
+	level.setFonte("fonte16");
+
 	botaoJogar.setSpriteSheet("botaoJogar");
 	botaoJogar.setPos(gJanela.getLargura() / 2, 400);
 
@@ -40,10 +50,10 @@ void Jogo::inicializar()
 	botaoSair.setSpriteSheet("botaoSair");
 	botaoSair.setPos(gJanela.getLargura() / 2, 600);
 
-//	for (int i = 0; i < 100; i++)
-//	{
-//		meteoros[i] = nullptr;
-//	}
+	//	for (int i = 0; i < 100; i++)
+	//	{
+	//		meteoros[i] = nullptr;
+	//	}
 }
 
 void Jogo::finalizar()
@@ -144,9 +154,9 @@ void Jogo::carregarAssets()
 
 void Jogo::criarMeteoro()
 {
-	if ((cdMeteoro % 300) == 0)
+	if ((cdMeteoro % 303 - (dificuldade * 3)) == 0)
 	{
-		meteoros[indexMeteoro] = new Meteoro();
+		meteoros[indexMeteoro] = new Meteoro(dificuldade);
 		//meteoros->push_back(*new Meteoro);
 
 		if (indexMeteoro >= 99)
@@ -158,11 +168,11 @@ void Jogo::criarMeteoro()
 			indexMeteoro++;
 		}
 	}
-	if ((rand() % 1000) == 0)
+	if ((rand() % 1010 - (dificuldade * 10)) == 0)
 	{
-		meteoros[indexMeteoro] = new Meteoro();
+		meteoros[indexMeteoro] = new Meteoro(dificuldade);
 		//meteoros->push_back(*new Meteoro);
-		
+
 		if (indexMeteoro >= 99)
 		{
 			indexMeteoro = 0;
@@ -200,10 +210,10 @@ void Jogo::colisaoMeteoroTiro()
 		for (int i = 0; i < 15; i++)
 		{
 			for (int k = 0; k < 100; k++)
-			//for (int k = 0; k < meteoros->size(); k++)
+				//for (int k = 0; k < meteoros->size(); k++)
 			{
 				if (jogador->getNave(j)->getTiro(i) != nullptr && meteoros[k] != nullptr)
-				//if (jogador->getNave(j)->getTiro(i) != nullptr)
+					//if (jogador->getNave(j)->getTiro(i) != nullptr)
 				{
 					if (uniTestarColisaoCirculoComCirculo(jogador->getNave(j)->getTiro(i)->getX(), jogador->getNave(j)->getTiro(i)->getY(), (jogador->getNave(j)->getTiro(i)->getSprite().getAltura() / 2), meteoros[k]->getX(), meteoros[k]->getY(), (meteoros[k]->getSprite().getAltura() / 2)))
 					{
@@ -252,7 +262,7 @@ void Jogo::colisaoMeteoroNave()
 			{
 				jogador->setVida(-1);
 				jogador->setX(gJanela.getLargura() / 4);
-				jogador->setY(gJanela.getAltura() / 2);	
+				jogador->setY(gJanela.getAltura() / 2);
 
 				delete meteoros[k];
 				meteoros[k] = nullptr;
@@ -261,17 +271,29 @@ void Jogo::colisaoMeteoroNave()
 	}
 }
 
+void Jogo::controlarDificuldade()
+{
+	cdDificuldade++;
+	if (cdDificuldade >= 600)
+	{
+		dificuldade++;
+		cdDificuldade = 0;
+	}
+}
+
 void Jogo::resetar()
 {
 	if (jogador != nullptr)
 	{
 		delete jogador;
-	}	
+	}
 	jogador = new Jogador();
 	jogador->inicializar();
 
 	cdMeteoro = 0;
 	indexMeteoro = 0;
+	dificuldade = 1;
+	cdDificuldade = 0;
 
 	for (int i = 0; i < 100; i++)
 	{
@@ -312,6 +334,11 @@ void Jogo::executarTelaJogo()
 		tela = telaGameOver;
 	}
 
+	if (dificuldade == 100)
+	{
+		tela = telaGameOver;
+	}
+
 	// Jogador atualizar
 	jogador->atualizar();
 	jogador->desenhar();
@@ -325,6 +352,17 @@ void Jogo::executarTelaJogo()
 			meteoros[i]->desenhar();
 		}
 	}
+
+	for (int i = 0; i < jogador->getVida(); i++)
+	{
+		vidas.desenhar(40 + (i * 40), 680, -90);
+	}
+
+	level.setString("LEVEL " + to_string(dificuldade));
+	level.desenhar(40, 640);
+
+	controlarDificuldade();
+
 	criarMeteoro();
 
 	// Colisão Meteoro <> Tiro
@@ -367,23 +405,23 @@ void Jogo::executarTelaPause()
 
 void Jogo::background()
 {
-		if (bgX <= -gJanela.getLargura() / 2)
-		{
-			bgX = gJanela.getLargura() / 2;
-		}
-		if (bgParalaxX <= -gJanela.getLargura() / 2)
-		{
-			bgParalaxX = gJanela.getLargura() / 2;
-		}
+	if (bgX <= -gJanela.getLargura() / 2)
+	{
+		bgX = gJanela.getLargura() / 2;
+	}
+	if (bgParalaxX <= -gJanela.getLargura() / 2)
+	{
+		bgParalaxX = gJanela.getLargura() / 2;
+	}
 
-		bg1.desenhar(bgX, gJanela.getAltura() / 2);
-		bg2.desenhar(bgX + gJanela.getLargura(), gJanela.getAltura() / 2);
-		bgParalax1.desenhar(bgParalaxX, gJanela.getAltura() / 2);
-		bgParalax2.desenhar(bgParalaxX + gJanela.getLargura(), gJanela.getAltura() / 2);
+	bg1.desenhar(bgX, gJanela.getAltura() / 2);
+	bg2.desenhar(bgX + gJanela.getLargura(), gJanela.getAltura() / 2);
+	bgParalax1.desenhar(bgParalaxX, gJanela.getAltura() / 2);
+	bgParalax2.desenhar(bgParalaxX + gJanela.getLargura(), gJanela.getAltura() / 2);
 
-		if (bgParalax)
-		{
-		bgX -= .1;
-		bgParalaxX -= .2;
-		}
+	if (bgParalax)
+	{
+		bgX -= .1 * (0.9 + dificuldade / 10);
+		bgParalaxX -= .2 * (0.9 + dificuldade / 10);
+	}
 }

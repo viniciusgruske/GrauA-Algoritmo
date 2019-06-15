@@ -6,6 +6,6 @@ int main(int argc, char* argv[])
 	jogo.inicializar();
 	jogo.executar();
 	jogo.finalizar();
-
+	
 	return 0;
 }
